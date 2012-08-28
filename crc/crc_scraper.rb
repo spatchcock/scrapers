@@ -11,13 +11,13 @@ require 'net/http'
 require 'cgi'
 
 class String
-	def quote
-		return "\"#{self}\""
-	end
+  def quote
+    return "\"#{self}\""
+  end
 
-	def sub_ampersands
-		return self.gsub("&", "_AMPERSAND_")
-	end
+  def sub_ampersands
+    return self.gsub("&", "_AMPERSAND_")
+  end
 
   def encode_path
     return self.gsub(/[\s\/]/, "_")
