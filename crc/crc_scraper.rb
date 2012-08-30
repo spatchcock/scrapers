@@ -37,7 +37,7 @@ include REXML
 
 def create_csv_data(doc_root)
   table   = []
-  headers = %w( organizationName registrationNumber emissions rank tradingName weightedScore earlyActionMetric absoluteMetric growthMetric units source)
+  headers = %w( organizationName registrationNumber emissions rank tradingName weightedScore earlyActionMetric absoluteMetric growthMetric source)
   table << headers.map { |header| header.quote }
 
   # Build data table
@@ -59,8 +59,7 @@ def create_csv_data(doc_root)
     hash['earlyActionMetric'] = scorecard.elements['earlyActionAchievementDetails/earlyActionAchievementResult'].text
     hash['absoluteMetric']    = scorecard.elements['absoluteEmissionsAchievementDetails/absoluteAchievementResult'].text
     hash['growthMetric']      = scorecard.elements['growthScore'].text
-    hash['units']             = nil
-    hash['source']            = "http://crc.environment-agency.gov.uk/pplt/web/plt/public/2010-11/CRCPerformanceLeagueTable20102011/download"
+    hash['source']            = url
     
     table << headers.map do |header| 
       value = hash[header]
