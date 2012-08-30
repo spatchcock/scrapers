@@ -59,7 +59,7 @@ def create_csv_data(doc_root)
     hash['earlyActionMetric'] = scorecard.elements['earlyActionAchievementDetails/earlyActionAchievementResult'].text
     hash['absoluteMetric']    = scorecard.elements['absoluteEmissionsAchievementDetails/absoluteAchievementResult'].text
     hash['growthMetric']      = scorecard.elements['growthScore'].text
-    hash['source']            = url
+    hash['source']            = $url
     
     table << headers.map do |header| 
       value = hash[header]
@@ -77,8 +77,8 @@ def create_csv_data(doc_root)
 
 end
 
-url = "http://crc.environment-agency.gov.uk/pplt/web/plt/public/2010-11/CRCPerformanceLeagueTable20102011/download"
-xml = Net::HTTP.get_response(URI.parse(url))
+$url = "http://crc.environment-agency.gov.uk/pplt/web/plt/public/2010-11/CRCPerformanceLeagueTable20102011/download"
+xml = Net::HTTP.get_response(URI.parse($url))
 doc = REXML::Document.new(xml.body)
 root = doc.elements["LeagueTablePublication/participantScorecards"]
 
